@@ -63,7 +63,7 @@ print(f"PCA variances: {pca_variances}")
 print(f"cov matrix \n{cov_matrix}")
 # Compute covariance matrix
 cov_matrix = np.cov(pca_projected, rowvar=False)
-print(f"cov matrix for pca_projected:\n {cov_matrix}")
+print(f"covariance matrix for pca_projected:\n {cov_matrix}")
 # Compute covariance matrix
 cov_matrix = np.cov(gs_projected, rowvar=False)
-print(f"cov matrix for gram schmidt:\n {cov_matrix}")
+print(f"covariance matrix for gram schmidt:\n {cov_matrix}")
