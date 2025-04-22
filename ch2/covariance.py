@@ -3,7 +3,7 @@ import numpy as np
 # Generate data
 mean = np.array([30, -20])
 covariance = np.array([[10, .99], [.99, 40]])
-data = np.random.multivariate_normal(mean, covariance, 10000)
+data = np.random.multivariate_normal(mean, covariance, 10000000)
 
 # Remove means (center the data)
 centered_data = data - np.mean(data, axis=0)
@@ -17,9 +17,9 @@ def gram_schmidt(v1, v2):
     u2 = u2 / np.linalg.norm(u2)
     return u1, u2
 
-# Initial arbitrary basis (standard basis)
-v1 = np.array([1, 0])
-v2 = np.array([0, 1])
+# Initial basis
+v1 = np.array(covariance[0])
+v2 = np.array(covariance[1])
 
 # Compute orthonormal basis
 u1, u2 = gram_schmidt(v1, v2)
@@ -59,3 +59,11 @@ print(f"PCA transform: {pca_transform}")
 print(f"GS transform: {gs_transform}")
 print(f"Gram-Schmidt variances: {gs_variances}")
 print(f"PCA variances: {pca_variances}")
+
+print(f"cov matrix \n{cov_matrix}")
+# Compute covariance matrix
+cov_matrix = np.cov(pca_projected, rowvar=False)
+print(f"cov matrix for pca_projected:\n {cov_matrix}")
+# Compute covariance matrix
+cov_matrix = np.cov(gs_projected, rowvar=False)
+print(f"cov matrix for gram schmidt:\n {cov_matrix}")
